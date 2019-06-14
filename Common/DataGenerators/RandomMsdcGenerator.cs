@@ -17,14 +17,14 @@ namespace Common.DataGenerators
             {
                 _ = reader.ReadLine();
 
-                string line = reader.ReadLine();
+                var line = reader.ReadLine();
 
                 while (line != null)
                 {
                     var rawIds = line.Split(',');
 
-                    int userId = int.Parse(rawIds[0]);
-                    int trackId = int.Parse(rawIds[1]);
+                    var userId = int.Parse(rawIds[0]);
+                    var trackId = int.Parse(rawIds[1]);
 
                     ids.Add((userId, trackId));
 
@@ -32,23 +32,21 @@ namespace Common.DataGenerators
                 }
             }
 
-            int count = ids.Select(x => x.UserId).Distinct().Count();
-
             return ids.GroupBy(x => x.UserId, x => x.TrackId).SelectMany(x => Shuffle(x.ToList()).Take(100));
         }
 
 
         private IEnumerable<T> Shuffle<T>(IList<T> list)
         {
-            int n = list.Count;
+            var n = list.Count;
 
             while (n > 1)
             {
                 n--;
 
-                int k = _random.Next(n + 1);
+                var k = _random.Next(n + 1);
 
-                T value = list[k];
+                var value = list[k];
 
                 list[k] = list[n];
 

@@ -13,11 +13,11 @@ namespace Common.DataGenerators
             {
                 _ = reader.ReadLine();
 
-                string line = reader.ReadLine();
+                var line = reader.ReadLine();
 
                 while (line != null)
                 {
-                    int trackId = int.Parse(line.Split(',')[1]);
+                    var trackId = int.Parse(line.Split(',')[1]);
 
                     trackIds.Add(trackId);
 

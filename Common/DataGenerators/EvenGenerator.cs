@@ -8,7 +8,7 @@ namespace Common.DataGenerators
 
         public IEnumerable<int> Generate()
         {
-            for (int number = 0; number <= Max; number++)
+            for (var number = 0; number <= Max; number++)
             {
                 if (number % 2 == 0)
                 {

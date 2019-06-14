@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Linq;
 
 namespace Common
 {
     public static class PrimeNumberGenerator
     {
- 
+
         public static int GetNextPrime(int number)
         {
             while (true)
@@ -33,7 +31,5 @@ namespace Common
                 }
             }
         }
-
-      
     }
 }
