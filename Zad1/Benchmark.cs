@@ -30,6 +30,16 @@ namespace Zad1
                 }
             }
 
+            long max = mappedValues.Keys.Max();
+
+            for(int i = 0; i <= max; i++)
+            {
+                if(!mappedValues.ContainsKey(i))
+                {
+                    mappedValues[i] = 0;
+                }
+            }
+
             stopWatch.Stop();
 
             return CreateResult(stopWatch.Elapsed, mappedValues.OrderBy(x => x.Key).ToList(), modulo, hashFunction);
@@ -62,7 +72,7 @@ namespace Zad1
                 }
             }
 
-            return new Entropy { Actual = Math.Round(-sum, 2), Optimal = Math.Round(-Math.Log10(1 / (double)modulo), 2) };
+            return new Entropy { Actual = -sum, Optimal = -Math.Log10(1 / (double)modulo) };
         }
 
         private double CalculateMeanSquaredError(List<KeyValuePair<long, long>> mappedValues, long modulo)
@@ -74,10 +84,10 @@ namespace Zad1
             {
                 var probability = GetProbability(mappedValues, i, count);
 
-                sum += Math.Pow(probability - 1 / (double)modulo, 2);
+                sum += (double)Math.Pow((double)probability - 1 / (double)modulo, 2);
             }
 
-            return Math.Round(sum / modulo, 2);
+            return (sum / modulo);
         }
 
         private double GetProbability(List<KeyValuePair<long, long>> mappedValues, long value, long count)

@@ -50,7 +50,7 @@ namespace Common.Bloom
             {
                 BloomFilterMemory = _parameterConfiguration.FilterSize * sizeof(bool),
                 BloomFilterTime = bloomFilterStopwatch.Elapsed,
-                ReferenceFilterMemory = _data.Count,
+                ReferenceFilterMemory = _data.Count* sizeof(int) * 8,
                 ReferenceFilterTime = referenceFilterStopwatch.Elapsed
             };
 

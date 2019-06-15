@@ -72,7 +72,7 @@ namespace Zad1
             foreach (var pair in mappedValuesByKeys)
             {
                 WriteLeft($"Wartość = {pair.Simple.Key}, zmapowane klucze = {pair.Simple.Value}");
-                WriteRight($"Wartość = {pair.Simple.Key}, zmapowane klucze = {pair.Simple.Value}");
+                WriteRight($"Wartość = {pair.Advanced.Key}, zmapowane klucze = {pair.Advanced.Value}");
             }
 
             NewLine();

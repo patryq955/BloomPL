@@ -1,6 +1,7 @@
 ﻿using Common;
 using Common.Bloom;
 using Common.DataGenerators;
+using System;
 
 namespace Zad2
 {
@@ -12,6 +13,8 @@ namespace Zad2
             var filterBloom = new FilterBloom(config);
 
             filterBloom.Run(new RandomGenerator(config.N, Settings.MaxDataCount));
+
+            Console.ReadLine();
         }
     }
 }

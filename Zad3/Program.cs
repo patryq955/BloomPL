@@ -1,5 +1,6 @@
 ﻿using Common.Bloom;
 using Common.DataGenerators;
+using System;
 using System.Linq;
 
 namespace Zad3
@@ -13,6 +14,8 @@ namespace Zad3
 
             var filter = new FilterBloom(config);
             filter.Run(generator);
+
+            Console.ReadLine();
         }
     }
 }

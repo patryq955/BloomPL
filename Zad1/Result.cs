@@ -23,6 +23,6 @@ namespace Zad1
 
         internal double Actual { get; set; }
 
-        internal double Difference => Math.Round(Optimal - Actual, 2);
+        internal double Difference => Optimal - Actual;
     }
 }

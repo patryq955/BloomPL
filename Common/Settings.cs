@@ -4,6 +4,6 @@
     {
         //public const int MaxDataCount = 1_000_00;
 
-        public const int MaxDataCount = 100_000_000;
+        public const int MaxDataCount = 1_000_000;
     }
 }

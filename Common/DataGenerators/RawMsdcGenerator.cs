@@ -9,7 +9,7 @@ namespace Common.DataGenerators
         {
             var trackIds = new HashSet<int>();
 
-            using (var reader = new StreamReader(File.Open(@"D:\temp\facts-nns.csv", FileMode.Open)))
+            using (var reader = new StreamReader(File.Open(@"E:\temp\facts-nns.csv", FileMode.Open)))
             {
                 _ = reader.ReadLine();
 

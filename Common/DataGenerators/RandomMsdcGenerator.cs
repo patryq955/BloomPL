@@ -13,7 +13,7 @@ namespace Common.DataGenerators
         {
             var ids = new List<(int UserId, int TrackId)>();
 
-            using (var reader = new StreamReader(File.Open(@"D:\temp\facts-nns.csv", FileMode.Open)))
+            using (var reader = new StreamReader(File.Open(@"E:\temp\facts-nns.csv", FileMode.Open)))
             {
                 _ = reader.ReadLine();
 
