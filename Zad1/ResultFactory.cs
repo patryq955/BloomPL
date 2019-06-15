@@ -1,4 +1,4 @@
-﻿using Common.DataGenerators;
+﻿using Common.Creators;
 using Common.HashFunctions;
 using System;
 using System.Collections.Generic;
@@ -9,9 +9,9 @@ namespace Zad1
 {
     public class ResultFactory
     {
-        internal Result CreateResult(IDataGenerator dataGenerator, IFunction hashFunction, long modulo)
+        internal Result CreateResult(ICreator creator, IFunction hashFunction, long modulo)
         {
-            var data = dataGenerator.Generate().ToList();
+            var data = creator.Create().ToList();
             var mappedValues = new Dictionary<long, long>();
 
             var stopWatch = Stopwatch.StartNew();

@@ -2,7 +2,7 @@
 
 namespace Common
 {
-    public static class PrimeNumberGenerator
+    public static class CreatorPrime
     {
 
         public static int GetNextPrime(int number)

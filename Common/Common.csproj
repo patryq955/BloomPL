@@ -46,16 +46,16 @@
     <Compile Include="Bloom\FilterBloom.cs" />
     <Compile Include="Bloom\ParameterConfiguration.cs" />
     <Compile Include="Bloom\Result.cs" />
-    <Compile Include="DataGenerators\BasicGenerator.cs" />
-    <Compile Include="DataGenerators\EvenGenerator.cs" />
-    <Compile Include="DataGenerators\IDataGenerator.cs" />
-    <Compile Include="DataGenerators\RawMsdcGenerator.cs" />
-    <Compile Include="DataGenerators\OddGenerator.cs" />
-    <Compile Include="DataGenerators\RandomGenerator.cs" />
+    <Compile Include="Creators\CreatorBasic.cs" />
+    <Compile Include="Creators\CreatorEven.cs" />
+    <Compile Include="Creators\ICreator.cs" />
+    <Compile Include="Creators\CreatorRawMsdc.cs" />
+    <Compile Include="Creators\CreatorOdd.cs" />
+    <Compile Include="Creators\CreatorRandom.cs" />
     <Compile Include="Functions\ExtendedFunction.cs" />
     <Compile Include="Functions\IFunction.cs" />
     <Compile Include="Functions\BaseFunction.cs" />
-    <Compile Include="PrimeNumberGenerator.cs" />
+    <Compile Include="CreatorPrime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿using Common.DataGenerators;
+﻿using Common.Creators;
 using Common.HashFunctions;
 using System;
 using System.Collections;
@@ -11,7 +11,7 @@ namespace Common.Bloom
     public class FilterBloom
     {
         private readonly IParameterConfiguration _parameterConfiguration;
-        private readonly int _primeNumber;
+        private readonly int _prime;
         private readonly BitArray _vector;
         private readonly List<IFunction> _hashFunctions;
 
@@ -23,13 +23,13 @@ namespace Common.Bloom
 
             _vector = new BitArray(_parameterConfiguration.FilterSize);
             _hashFunctions = new List<IFunction>();
-            _primeNumber = PrimeNumberGenerator.GetNextPrime(Settings.MaxDataCount);
+            _prime = CreatorPrime.GetNextPrime(Settings.MaxDataCount);
             GenerateHashFunctions();
         }
 
-        public void Run(IDataGenerator generator)
+        public void Run(ICreator creator)
         {
-            var numbers = generator.Generate().ToList();
+            var numbers = creator.Create().ToList();
 
             var referenceFilterStopwatch = Stopwatch.StartNew();
 
@@ -143,9 +143,9 @@ namespace Common.Bloom
             for (long i = 0; i < _parameterConfiguration.NumberHashFunctions; i++)
             {
                 long a = rand.Next(Settings.MaxDataCount - 1) + 1;
-                long b = rand.Next(_primeNumber);
+                long b = rand.Next(_prime);
 
-                _hashFunctions.Add(new ExtendedFunction(a, b, _primeNumber));
+                _hashFunctions.Add(new ExtendedFunction(a, b, _prime));
             }
         }
 

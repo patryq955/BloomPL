@@ -1,4 +1,4 @@
-﻿using Common.DataGenerators;
+﻿using Common.Creators;
 using Common.HashFunctions;
 using System;
 using System.Linq;
@@ -8,12 +8,12 @@ namespace Zad1
     public class Functions
     {
         private readonly ParameterConfiguration _parameterConfiguration;
-        private readonly ResultFactory _benchmark;
+        private readonly ResultFactory _resultCreator;
 
-        public Functions(ParameterConfiguration parameterConfiguration, ResultFactory benchmark)
+        public Functions(ParameterConfiguration parameterConfiguration, ResultFactory resultFactory)
         {
             _parameterConfiguration = parameterConfiguration;
-            _benchmark = benchmark;
+            _resultCreator = resultFactory;
         }
 
         public void Run()
@@ -31,25 +31,25 @@ namespace Zad1
 
         private void Calculate(long modulo)
         {
-            Calculate(modulo, new BasicGenerator());
-            Calculate(modulo, new EvenGenerator());
-            Calculate(modulo, new OddGenerator());
-            Calculate(modulo, new RawMsdcGenerator());
+            Calculate(modulo, new CreatorBasic());
+            Calculate(modulo, new CreatorEven());
+            Calculate(modulo, new CreatorOdd());
+            Calculate(modulo, new CreatorRawMsdc());
         }
 
-        private void Calculate(long modulo, IDataGenerator dataGenerator)
+        private void Calculate(long modulo, ICreator creator)
         {
-            var simpleHashFunctionsResult = _benchmark.CreateResult(dataGenerator, new BaseFunction(), modulo);
-            var advancedHashFunctionsResult = _benchmark.CreateResult(dataGenerator,
+            var simpleHashFunctionsResult = _resultCreator.CreateResult(creator, new BaseFunction(), modulo);
+            var advancedHashFunctionsResult = _resultCreator.CreateResult(creator,
                 new ExtendedFunction(_parameterConfiguration.A, _parameterConfiguration.B,
                     _parameterConfiguration.PrimeNumber), modulo);
 
-            Printer(modulo, dataGenerator, simpleHashFunctionsResult, advancedHashFunctionsResult);
+            Printer(modulo, creator, simpleHashFunctionsResult, advancedHashFunctionsResult);
         }
 
-        private static void Printer(long modulo, IDataGenerator dataGenerator, Result simpleHashFunctionsResult, Result advancedHashFunctionsResult)
+        private static void Printer(long modulo, ICreator creator, Result simpleHashFunctionsResult, Result advancedHashFunctionsResult)
         {
-            Console.WriteLine($"{dataGenerator}");
+            Console.WriteLine($"{creator}");
             Console.WriteLine($"M = {modulo}");
             NewLine();
             NewLine();

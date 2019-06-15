@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace Common.DataGenerators
+namespace Common.Creators
 {
-    public sealed class RawMsdcGenerator : IDataGenerator
+    public sealed class CreatorRawMsdc : ICreator
     {
-        public IEnumerable<int> Generate()
+        public IEnumerable<int> Create()
         {
             var trackIds = new HashSet<int>();
 

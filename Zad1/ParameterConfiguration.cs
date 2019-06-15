@@ -8,7 +8,7 @@ namespace Zad1
         public ParameterConfiguration()
         {
             Modulo = new[] { 10, 1000, 100000 };
-            PrimeNumber = PrimeNumberGenerator.GetNextPrime(Settings.MaxDataCount);
+            PrimeNumber = CreatorPrime.GetNextPrime(Settings.MaxDataCount);
 
             var random = new Random(0);
             A = random.Next(PrimeNumber - 1) + 1;
