@@ -7,9 +7,9 @@ using System.Linq;
 
 namespace Zad1
 {
-    public class Benchmark
+    public class ResultFactory
     {
-        internal Result Run(IDataGenerator dataGenerator, IHashFunction hashFunction, long modulo)
+        internal Result CreateResult(IDataGenerator dataGenerator, IFunction hashFunction, long modulo)
         {
             var data = dataGenerator.Generate().ToList();
             var mappedValues = new Dictionary<long, long>();
@@ -18,7 +18,7 @@ namespace Zad1
 
             foreach (long number in data)
             {
-                var value = hashFunction.Calculate(number, modulo);
+                var value = hashFunction.Hash(number, modulo);
 
                 if (mappedValues.ContainsKey(value))
                 {
@@ -45,7 +45,7 @@ namespace Zad1
             return CreateResult(stopWatch.Elapsed, mappedValues.OrderBy(x => x.Key).ToList(), modulo, hashFunction);
         }
 
-        private Result CreateResult(TimeSpan time, List<KeyValuePair<long, long>> mappedValues, long modulo, IHashFunction hashFunction)
+        private Result CreateResult(TimeSpan time, List<KeyValuePair<long, long>> mappedValues, long modulo, IFunction hashFunction)
         {
             return new Result()
             {

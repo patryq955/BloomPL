@@ -49,13 +49,12 @@
     <Compile Include="DataGenerators\BasicGenerator.cs" />
     <Compile Include="DataGenerators\EvenGenerator.cs" />
     <Compile Include="DataGenerators\IDataGenerator.cs" />
-    <Compile Include="DataGenerators\RandomMsdcGenerator.cs" />
     <Compile Include="DataGenerators\RawMsdcGenerator.cs" />
     <Compile Include="DataGenerators\OddGenerator.cs" />
     <Compile Include="DataGenerators\RandomGenerator.cs" />
-    <Compile Include="HashFunctions\AdvancedHashFunction.cs" />
-    <Compile Include="HashFunctions\IHashFunction.cs" />
-    <Compile Include="HashFunctions\SimpleHashFunction.cs" />
+    <Compile Include="Functions\ExtendedFunction.cs" />
+    <Compile Include="Functions\IFunction.cs" />
+    <Compile Include="Functions\BaseFunction.cs" />
     <Compile Include="PrimeNumberGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />

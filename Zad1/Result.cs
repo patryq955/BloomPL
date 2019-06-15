@@ -6,7 +6,7 @@ namespace Zad1
 {
     internal sealed class Result
     {
-        internal IHashFunction HashFunction { get; set; }
+        internal IFunction HashFunction { get; set; }
 
         internal TimeSpan Time { get; set; }
 

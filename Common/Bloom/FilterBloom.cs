@@ -13,7 +13,7 @@ namespace Common.Bloom
         private readonly IParameterConfiguration _parameterConfiguration;
         private readonly int _primeNumber;
         private readonly BitArray _vector;
-        private readonly List<IHashFunction> _hashFunctions;
+        private readonly List<IFunction> _hashFunctions;
 
         private HashSet<int> _data;
 
@@ -22,7 +22,7 @@ namespace Common.Bloom
             _parameterConfiguration = parameterConfiguration;
 
             _vector = new BitArray(_parameterConfiguration.FilterSize);
-            _hashFunctions = new List<IHashFunction>();
+            _hashFunctions = new List<IFunction>();
             _primeNumber = PrimeNumberGenerator.GetNextPrime(Settings.MaxDataCount);
             GenerateHashFunctions();
         }
@@ -94,7 +94,7 @@ namespace Common.Bloom
             WriteRight($"FPR {(double)falsePositive / (double)(trueNegative + falsePositive)}");
             NewLine();
 
-            Console.WriteLine($"Calculate Expected: {CalculateExpectedFp()}");
+            Console.WriteLine($"Expected FP: {CalculateTheoryFp()}");
             NewLine();
 
             Console.WriteLine($"Czas filtru referencyjnego = {result.ReferenceFilterTime}");
@@ -105,11 +105,7 @@ namespace Common.Bloom
             Console.WriteLine($"Pamięć filtru Blooma = {result.BloomFilterMemory}");
         }
 
-        private double CalculateExpectedFp() =>
-            Math.Pow(1 -
-                         Math.Exp(-_parameterConfiguration.NumberHashFunctions * (double)_parameterConfiguration.N / _parameterConfiguration.FilterSize),
-                        _parameterConfiguration.NumberHashFunctions
-                    );
+       
 
         private bool Contains(int value)
         {
@@ -117,7 +113,7 @@ namespace Common.Bloom
 
             foreach (var function in _hashFunctions)
             {
-                var position = (int)function.Calculate(value, _parameterConfiguration.FilterSize);
+                var position = (int)function.Hash(value, _parameterConfiguration.FilterSize);
 
                 if (_vector.Get(position))
                 {
@@ -135,7 +131,7 @@ namespace Common.Bloom
         {
             foreach (var function in _hashFunctions)
             {
-                var position = (int)function.Calculate(value, _parameterConfiguration.FilterSize);
+                var position = (int)function.Hash(value, _parameterConfiguration.FilterSize);
                 _vector.Set(position, true);
             }
         }
@@ -149,9 +145,18 @@ namespace Common.Bloom
                 long a = rand.Next(Settings.MaxDataCount - 1) + 1;
                 long b = rand.Next(_primeNumber);
 
-                _hashFunctions.Add(new AdvancedHashFunction(a, b, _primeNumber));
+                _hashFunctions.Add(new ExtendedFunction(a, b, _primeNumber));
             }
         }
+
+        private double CalculateTheoryFp() =>
+           Math.Pow(1 -
+                        Math.Exp(-_parameterConfiguration.NumberHashFunctions * (double)_parameterConfiguration.N / _parameterConfiguration.FilterSize),
+                       _parameterConfiguration.NumberHashFunctions
+                   );
+
+
+
 
         private static void WriteLeft(string text) => Console.Write("{0,-50}", text);
 

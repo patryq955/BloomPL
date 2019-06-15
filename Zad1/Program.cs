@@ -4,7 +4,7 @@
     {
         static void Main()
         {
-            var functions = new Functions(new ParameterConfiguration(), new Benchmark());
+            var functions = new Functions(new ParameterConfiguration(), new ResultFactory());
 
             functions.Run();
         }

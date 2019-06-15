@@ -8,9 +8,9 @@ namespace Zad1
     public class Functions
     {
         private readonly ParameterConfiguration _parameterConfiguration;
-        private readonly Benchmark _benchmark;
+        private readonly ResultFactory _benchmark;
 
-        public Functions(ParameterConfiguration parameterConfiguration, Benchmark benchmark)
+        public Functions(ParameterConfiguration parameterConfiguration, ResultFactory benchmark)
         {
             _parameterConfiguration = parameterConfiguration;
             _benchmark = benchmark;
@@ -39,9 +39,9 @@ namespace Zad1
 
         private void Calculate(long modulo, IDataGenerator dataGenerator)
         {
-            var simpleHashFunctionsResult = _benchmark.Run(dataGenerator, new SimpleHashFunction(), modulo);
-            var advancedHashFunctionsResult = _benchmark.Run(dataGenerator,
-                new AdvancedHashFunction(_parameterConfiguration.A, _parameterConfiguration.B,
+            var simpleHashFunctionsResult = _benchmark.CreateResult(dataGenerator, new BaseFunction(), modulo);
+            var advancedHashFunctionsResult = _benchmark.CreateResult(dataGenerator,
+                new ExtendedFunction(_parameterConfiguration.A, _parameterConfiguration.B,
                     _parameterConfiguration.PrimeNumber), modulo);
 
             Printer(modulo, dataGenerator, simpleHashFunctionsResult, advancedHashFunctionsResult);
@@ -49,9 +49,12 @@ namespace Zad1
 
         private static void Printer(long modulo, IDataGenerator dataGenerator, Result simpleHashFunctionsResult, Result advancedHashFunctionsResult)
         {
-            Console.WriteLine($"M = {modulo}");
             Console.WriteLine($"{dataGenerator}");
+            Console.WriteLine($"M = {modulo}");
             NewLine();
+            NewLine();
+            NewLine();
+
 
             WriteLeft($"{simpleHashFunctionsResult.HashFunction}");
             WriteRight($"{advancedHashFunctionsResult.HashFunction}");
